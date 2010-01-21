@@ -44,7 +44,7 @@ class Website(object):
     def navigation(self, links):
         """ Returns the navigation of the website
         """
-        nav_code = self.get('nav_code', "<ul>{nav_elements}</ul>")
+        nav_code = self.get('nav_code', "<ul>\n\t{nav_elements}\n</ul>")
         nav_element = self.get('nav_element', "<li>{nav_link}</li>")
         all_nav_elements = [nav_element.format(nav_link=self.hyperlink(l[0], l[1]))
                             for l in links]
@@ -56,3 +56,10 @@ class Website(object):
             if key.startswith("css_"):
                 css += value
         return css
+
+    def cssLink(self, media='screen'):
+        css_code = self.get("cssfile_%s" % media,
+                            "<link rel=\"stylesheet\" href=\"{cssfile_filename}\" type=\"text/css\" media=\"{media}\" />")
+        cssfile_filename = self.get("cssfile_%sfilename" % media,
+                                    "basic_style.css")
+        return css_code.format(media=media, cssfile_filename=cssfile_filename)
