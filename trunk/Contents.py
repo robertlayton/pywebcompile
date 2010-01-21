@@ -4,10 +4,10 @@ class Contents(object):
     """
     def __init__(self, filename, **args):
         self.filename = filename
-        self.parameters = args
+        self.properties = args
 
     def __getitem__(self, item):
-        return self.parameters[item]
+        return self.properties[item]
 
     def __setitem__(self, key, value):
-        self.parameters[key] = value
+        self.properties[key] = value
