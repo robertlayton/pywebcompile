@@ -27,7 +27,12 @@ class Website(object):
             return self.properties[name]
         else:
             return defaults[name]
+        
+    def __getitem__(self, item):
+        return self.get(item)
 
+    def __setitem__(self, key, value):
+        self.properties[key] = value
         
     def hyperlink(self, shown_text, link_to, **args):
         """ Returns a hyperlink (<a> tag) according to website's settings
