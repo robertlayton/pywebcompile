@@ -1,8 +1,14 @@
+""" Methods for compiling templates into finished versions
+
+    Currently has a script method, so don't include yet!
+"""
 import re
 
 br_pattern = re.compile("{{[\w]+}}")
 
 def compileHTML(template, content, output_f):
+    """ Compiles a template with the given content
+    """
     matches = br_pattern.findall(template)
     for match in matches:
         key = match[2:-2] # "{{document}}" --> "document"
