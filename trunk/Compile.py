@@ -2,9 +2,20 @@
 
     Currently has a script method, so don't include yet!
 """
-import re
+import re, os
 
 br_pattern = re.compile("{{[\w]+}}")
+
+def compileAll(template, contents, output_directory="."):
+    for content in contents:
+        try:
+            filename = os.path.join(output_directory, content.filename)
+            with open(filename, 'w') as output_f:
+                compileHTML(template, content, output_f)
+        except Exception, e:
+            print e
+            print "Skipping %s" % content.filename
+    
 
 def compileHTML(template, content, output_f):
     """ Compiles a template with the given content
@@ -14,6 +25,7 @@ def compileHTML(template, content, output_f):
         key = match[2:-2] # "{{document}}" --> "document"
         template = template.replace(match, content[key])
     output_f.write(template)
+
 
 
 test_content = {
