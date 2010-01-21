@@ -1,0 +1,10 @@
+#labels Phase-Design
+#Explains the workflow of using this library
+
+= Outline of workflow =
+
+The standard workflow will be:
+- Create a new Website instance with desired settings
+- Create Webpage instances for each webpage using Website as a guide
+- Compile those Webpages using a given template
+- Finished!
