@@ -1,5 +1,5 @@
+#summary Explains the workflow of using this library
 #labels Phase-Design
-#Explains the workflow of using this library
 
 = Outline of workflow =
 
