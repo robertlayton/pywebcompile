@@ -7,6 +7,11 @@ with open('default_template.html') as input_f:
     default_html_template = input_f.read()
 
 defaults = {
+    # website information
+    "location": "/home/bob",
+    "creator_name": "Robert Layton",
+    "creation_date": "2010",
+    
     # template information
     'html_template': default_html_template,
     
@@ -15,10 +20,10 @@ defaults = {
     'expand_relative': False, # don't expand relative links
 
     # headers and footers
-    'title': "Testing page",
-    'head_title': "{title} :: Test Webpage",
-    'page_title': "<h1 style='page_heading'>{title}</h1>",
-    'page_footer': "{page_title} (c) Robert Layton, 2010",
+    'website_title': "Untitled Website!",
+    'head_title': "{page_title} :: {website_title}",
+    'page_title': "<h1 style='page_heading'>{page_title}</h1>",
+    'page_footer': "{page_title} (c) {creator_name}, {creation_date}",
     'head_declarations': "{css_declarations}\n{code_about}",
     'code_about': "<!-- Compilation Software by Robert Layton, 2010 (c) --!>",
     
@@ -35,4 +40,9 @@ defaults = {
     "css_declarations": "\t{cssfile_screen_link}\n\t{cssfile_print_link}",
     # css screen file
     "css_screen_default": default_css_screen,
+
+    # standard contents
+    'introduction': "An introduction for the page will go here",
+    'contents': "Content will go here",
+    'sidebar': "Intersting side information will go here",
     }
