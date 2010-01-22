@@ -17,7 +17,7 @@ single_br_pattern = re.compile("{[\w]+}")
 class Website(object):
     """ Contains information about the website and returns consistent HTML Objects
     """
-    def __init__(self, **args):
+    def __init__(self, **args):        
         self.properties = args
 
 
@@ -26,32 +26,15 @@ class Website(object):
         """
         global defaults
         if name in self.properties:
-            return self.compileProperty(self.properties[name])
+            return self.properties[name]
         else:
-            return self.compileProperty(defaults[name])
+            return defaults[name]
         
     def __getitem__(self, item):
         return self.get(item)
 
-    def __setattr__(self, key, value):
-        # use __setitem__
-        self[key] = value
-        
     def __setitem__(self, key, value):
         self.properties[key] = value
-
-    def compileProperty(self, value):
-        if not isinstance(value, basestring):
-            return value
-        print "compiling %s" % value
-        matches = single_br_pattern.findall(value)
-        for match in matches:
-            key = match[1:-1] # "{document}" --> "document"
-            try:
-                value = value.replace(match, self[key])
-            except KeyError:
-                pass # don't replace, probably just text
-        return value
 
     def hyperlink(self, shown_text, link_to, **args):
         """ Returns a hyperlink (<a> tag) according to website's settings
@@ -123,21 +106,24 @@ def isRelative(link):
     raise NotImplementedError("Website.isRelative has not been implemented yet")
 
 
-# Test of some of the properties
-website = Website()
-
-# simple text, nothing suprising
-print "code_about:"
-print website['code_about']
-print ""
-# non-text attribute
-print "expand_relative:"
-print website['expand_relative']
-print ""
-# text that needs one level of compilation
-print "page_footer:"
-print website['page_footer']
-print ""
-# text that needs multiple levels of compilation
-print "head_declarations:"
-print website['head_declarations']
+if __name__ == "__main__":
+    # Test of some of the properties
+    website = Website()
+    from Contents import Contents
+    from Compile import compileProperty
+    contents = Contents("")
+    # simple text, nothing suprising
+    print "code_about:"
+    print compileProperty(website['code_about'], contents, website)
+    print ""
+    # non-text attribute
+    print "expand_relative:"
+    print compileProperty(website['expand_relative'], contents, website)
+    print ""
+    # text that needs one level of compilation
+    print "page_footer:"
+    print compileProperty(website['page_footer'], contents, website)
+    print ""
+    # text that needs multiple levels of compilation
+    print "head_declarations:"
+    print compileProperty(website['head_declarations'], contents, website)
