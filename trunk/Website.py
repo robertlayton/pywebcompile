@@ -33,12 +33,17 @@ class Website(object):
     def __getitem__(self, item):
         return self.get(item)
 
+    def __setattr__(self, key, value):
+        # use __setitem__
+        self[key] = value
+        
     def __setitem__(self, key, value):
         self.properties[key] = value
 
     def compileProperty(self, value):
         if not isinstance(value, basestring):
             return value
+        print "compiling %s" % value
         matches = single_br_pattern.findall(value)
         for match in matches:
             key = match[1:-1] # "{document}" --> "document"
