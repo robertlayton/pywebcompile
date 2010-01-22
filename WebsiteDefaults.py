@@ -21,16 +21,15 @@ defaults = {
 
     # headers and footers
     'website_title': "Untitled Website!",
-    'head_title': "{page_title} :: {website_title}",
-    'page_title': "<h1 style='page_heading'>{page_title}</h1>",
+    'head_title': "{document_title} :: {website_title}",
+    'page_title': "Untitled Document",
+    'document_title': "<h1>{page_title}</h1>",
     'page_footer': "{page_title} (c) {creator_name}, {creation_date}",
     'head_declarations': "{css_declarations}\n{code_about}",
-    'code_about': "<!-- Compilation Software by Robert Layton, 2010 (c) --!>",
+    'code_about': "<!-- Compilation Software by Robert Layton, 2010 (c) -->",
     
     # navigation link properties
-    'nav_code': "<ul>\n\t{nav_elements}\n</ul>",
-    'nav_element': "<li>{nav_link}</li>",
-    'nav_links': [('Home', 'index.html'), ('Away', 'http://www.google.com')],
+    'nav_code': "Navigation code not set",
     
     # css file and linking properties
     "cssfile_screen_filename": "basic_style.css",
