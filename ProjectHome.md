@@ -1,0 +1,5 @@
+For some websites, such as blogs, the ability to add content is a necessity, but also requires all webpages to be dynamically created. This library allows you to add content to your website by first defining a profile for your website and then compiling the pages. The result is a set of static websites that are easier to serve and cache.
+
+There is no limitation on the content that can be included, meaning that for webpages with some real-time content (such as comments on a blog), AJAX could be included so that these are loaded after the static page has loaded. This gives a much quicker load time and allows you to host this content on other servers.
+
+There is also no reason why this couldn't be used for XML or other versions of HTML, other then HTML5 (or even, completely different types of files). However, to simplify coding and keep the codebase as clean as possible, the base library will be tested only on HTML5 content. Other types of files are left to optional modules.
